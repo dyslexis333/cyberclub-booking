@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b0e14">
+    <meta name="description" content="dyscyber — учебное бронирование игровых компьютеров, VIP-комнат, Pro-зон и PS5-комнаты.">
+    <title>dyscyber — бронирование игровых мест</title>
+    <link rel="stylesheet" href="./style.css">
+    <script type="module" src="./main.js"></script>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="topbar">
+        <a class="brand" href="#top" aria-label="dyscyber — на главную">
+          <span>dyscyber</span>
+        </a>
+        <nav class="main-nav" aria-label="Основная навигация">
+          <a href="#booking">Бронь</a>
+          <a href="#club-map">Карта клуба</a>
+          <a href="#my-bookings">Мои брони</a>
+        </nav>
+      </header>
+
+      <main id="top">
+        <section class="hero" aria-labelledby="club-title">
+          <div class="hero-copy">
+            <p class="eyebrow">PREMIUM CYBER LOUNGE · 2026</p>
+            <h1 id="club-title">Играй<br><span>на своём уровне.</span></h1>
+            <p class="hero-description">dyscyber — место для тех, кому важны стабильный FPS, быстрый отклик и комфортная команда рядом.</p>
+            <div class="hero-actions">
+              <a class="primary-link" href="#booking">Выбрать место <span aria-hidden="true">↘</span></a>
+              <span class="hero-address">Санкт-Петербург · ежедневно 24/7</span>
+            </div>
+          </div>
+          <div class="hero-visual" aria-label="Информация о клубе">
+            <div class="orb orb-one"></div>
+            <div class="orb orb-two"></div>
+            <div class="visual-grid"></div>
+            <div class="visual-label visual-label-top">01 / 06</div>
+            <div class="visual-label visual-label-bottom">PLAY<br>WITHOUT<br>LIMITS</div>
+            <div class="visual-stat"><strong>50</strong><span>игровых<br>компьютеров</span></div>
+          </div>
+        </section>
+
+        <section id="booking" class="booking-section" aria-labelledby="booking-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">01 · МЕСТА И ТАРИФЫ</p>
+              <h2 id="booking-title">Собери свою сессию</h2>
+            </div>
+            <p class="section-hint">Выбери компьютер, зону или комнату — бронь сохранится до отмены.</p>
+          </div>
+
+          <div class="filters panel">
+            <div class="filter-block">
+              <span class="filter-label">Локация</span>
+              <div id="zone-options" class="filter-options" role="group" aria-label="Фильтр по локации">
+                <button class="filter-button is-active" type="button" data-zone="all" aria-pressed="true">Все зоны</button>
+                <button class="filter-button" type="button" data-zone="common" aria-pressed="false">Общий зал</button>
+                <button class="filter-button" type="button" data-zone="vip" aria-pressed="false">VIP</button>
+                <button class="filter-button" type="button" data-zone="pro" aria-pressed="false">Pro</button>
+                <button class="filter-button" type="button" data-zone="console" aria-pressed="false">PS5</button>
+              </div>
+            </div>
+            <div class="filter-block">
+              <span class="filter-label">Почасовая стоимость</span>
+              <div id="price-options" class="filter-options" role="group" aria-label="Фильтр по почасовой стоимости">
+                <button class="filter-button is-active" type="button" data-price="all" aria-pressed="true">Любая</button>
+                <button class="filter-button" type="button" data-price="up-to-300" aria-pressed="false">До 300 ₽</button>
+                <button class="filter-button" type="button" data-price="301-1000" aria-pressed="false">301–1000 ₽</button>
+                <button class="filter-button" type="button" data-price="over-1000" aria-pressed="false">От 1001 ₽</button>
+              </div>
+            </div>
+            <div class="filter-block date-filter-block">
+              <span class="filter-label">Дата посещения</span>
+              <div id="date-options" class="date-options" role="group" aria-label="Дата посещения"></div>
+              <small class="date-hint">Показываются ближайшие пять доступных дат. Прошедший день исчезает автоматически.</small>
+            </div>
+          </div>
+
+          <div class="booking-layout">
+            <section class="panel map-panel" aria-labelledby="map-title">
+              <div class="panel-topline">
+                <div>
+                  <p class="eyebrow">02 · СХЕМА CLUB FLOOR</p>
+                  <h3 id="map-title">План клуба</h3>
+                </div>
+                <span id="visible-count" class="result-count" aria-live="polite"></span>
+              </div>
+              <div class="legend" aria-label="Состояния ресурсов">
+                <span><i class="legend-dot free" aria-hidden="true"></i>Свободно</span>
+                <span><i class="legend-dot selected" aria-hidden="true"></i>Выбрано</span>
+                <span><i class="legend-dot occupied" aria-hidden="true"></i>Занято</span>
+              </div>
+              <div class="map-plan-bar" aria-hidden="true"><span>FLOOR PLAN · DYSCYBER</span><span>ВХОД ↗</span></div>
+              <div class="map-viewport">
+                <div id="club-map" class="club-map" aria-label="Интерактивная схема киберклуба"></div>
+              </div>
+              <p id="empty-map" class="empty-message" hidden>По этим фильтрам свободных объектов не найдено.</p>
+            </section>
+
+            <aside class="booking-sidebar">
+              <section class="panel selection-panel" aria-labelledby="selection-title">
+                <div class="panel-topline">
+                  <div>
+                    <p class="eyebrow">03 · БРОНИРОВАНИЕ</p>
+                    <h3 id="selection-title">Твоя сессия</h3>
+                  </div>
+                  <span class="step-chip">dyscyber</span>
+                </div>
+                <div id="selection-empty" class="selection-placeholder">Выбери свободный компьютер или целую зону на карте.</div>
+                <div id="selection-content" hidden>
+                  <div class="selected-resource">
+                    <div>
+                      <span id="selected-zone" class="resource-zone"></span>
+                      <h4 id="selected-name"></h4>
+                    </div>
+                    <span id="selected-status" class="status-pill"></span>
+                  </div>
+                  <p id="selected-specs" class="selected-specs"></p>
+                  <p id="selected-date" class="selected-date"></p>
+                  <div class="tariff-switch" role="group" aria-label="Выберите тариф">
+                    <button type="button" class="tariff-button is-active" data-tariff="hourly" aria-pressed="true">
+                      <span>Почасовой</span><small>1–12 часов</small>
+                    </button>
+                    <button type="button" class="tariff-button" data-tariff="night" aria-pressed="false">
+                      <span>Ночной пакет</span><small>22:00–08:00 · 10 часов</small>
+                    </button>
+                  </div>
+                  <div id="hours-field" class="hours-field">
+                    <label for="hours-input">Количество часов</label>
+                    <div class="hours-control"><input id="hours-input" type="number" min="1" max="12" step="1" value="1"><span>час.</span></div>
+                    <small>Можно выбрать от 1 до 12 часов.</small>
+                  </div>
+                  <div class="total-row"><span>Итого</span><strong id="booking-total">0 ₽</strong></div>
+                  <form id="booking-form" novalidate>
+                    <button id="confirm-booking" class="primary-button" type="submit">Забронировать</button>
+                  </form>
+                </div>
+                <p id="form-error" class="form-error" role="alert" hidden></p>
+                <p id="app-status" class="app-status" role="status" aria-live="polite"></p>
+              </section>
+
+              <section class="panel info-panel" aria-labelledby="info-title">
+                <p class="eyebrow">WHY DYSCYBER</p>
+                <h3 id="info-title">Твоя игра — твои правила</h3>
+                <ul>
+                  <li><strong>540 Гц</strong><span>в Pro-зоне для идеального отклика</span></li>
+                  <li><strong>8K</strong><span>в отдельной PS5-комнате</span></li>
+                  <li><strong>22:00–08:00</strong><span>ночной пакет без скрытых условий</span></li>
+                </ul>
+              </section>
+            </aside>
+          </div>
+        </section>
+
+        <section id="my-bookings" class="my-bookings-section" aria-labelledby="my-bookings-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">04 · СОХРАНЯЮТСЯ В ЭТОМ БРАУЗЕРЕ</p>
+              <h2 id="my-bookings-title">Мои брони</h2>
+            </div>
+            <button id="reset-bookings" class="reset-button" type="button" hidden>Сбросить мои брони</button>
+          </div>
+          <div id="storage-warning" class="storage-warning" role="status" aria-live="polite" hidden></div>
+          <p id="bookings-empty" class="bookings-empty">Пока нет оформленных броней. Выбери ресурс на карте, чтобы добавить первую.</p>
+          <ul id="bookings-list" class="bookings-list" aria-label="Сохранённые брони"></ul>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <div><span class="footer-brand">dyscyber</span><span class="footer-dot">●</span><span>premium cyber lounge</span></div>
+        <p>Учебное демо: бронирования сохраняются только в этом браузере. Реальная оплата и бронь не оформляются.</p>
+      </footer>
+    </div>
+  </body>
+</html>
